@@ -1,0 +1,97 @@
+set nu
+"set relativenumber
+let mapleader = " "
+" set cscopetag 
+" set cscopeprg='gtags-cscope'
+" let GtagsCscope_Auto_Load = 1
+" let CtagsCscope_Auto_Map = 1
+" let GtagsCscope_Quiet = 1
+nmap <Leader>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>f :vert scs find f <C-R>=expand("<cword>")<CR><CR>
+" set cscopequickfix=g-,c-,f-,e-
+nmap <C-n> :cnext<CR>
+nmap <C-p> :cprev<CR>
+noremap , :
+noremap H 0
+noremap L $
+noremap <c-j> <c-d>
+noremap <c-k> <c-u>
+noremap <Leader>0 ggVG
+map zl :set splitright<CR>:vsplit<CR>
+map zh :set nosplitright<CR>:vsplit<CR>
+map zj :set nosplitbelow<CR>:split<CR>
+map zk :set splitbelow<CR>:split<CR>
+" set showtabline=1
+syntax enable
+set showmatch
+set showcmd
+set shortmess=atI
+set hlsearch
+set incsearch
+set nocsverb
+set cursorline
+set wildmenu
+set tabstop=4
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set smartindent
+set cindent
+set display=lastline
+set scrolloff=5
+
+set ruler
+set hidden
+set nocompatible
+set encoding=utf-8
+set fileencodings=utf-8,chinese
+"set mouse=r
+filetype indent on
+set nocp
+filetype plugin on
+":set list 
+set backspace=indent,eol,start
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+vnoremap // y/<c-r>"<cr>
+
+noremap <leader>b :buffers<cr>:b<space>
+noremap <leader>e :b#<cr>
+noremap <leader>w :w<cr>
+noremap <leader>q :qa<cr>
+inoremap jj <esc>
+cnoremap jj <c-c>
+
+
+
+set tags=tags;,tags
+set autochdir
+
+
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+
+set statusline=%1*%F%m%r%h%w%=\ %2*\ %Y\ %3*%{\"\".(\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"+\":\"\").\"\"}\ %4*[%l,%v]\ %5*%p%%\ \|\ %6*%LL
+" set laststatus=2
+
+" set termguicolors
+" if &term =~# '^screen'
+"     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" endif
+
+"" Out of the brackets 
+func SkipPair()
+    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'
+        return "\<ESC>la"
+    else
+        return "\t"
+    endif
+    endfunc
+ inoremap <TAB> <c-r>=SkipPair()<CR>
+
