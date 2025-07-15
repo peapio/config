@@ -14,7 +14,8 @@ alias r='ranger'
 alias gts='gotossh'
 alias vim='vi'
 #alias vim='nvim'
-alias gts='gotossh'
+
+### for build
 alias gor='go run'
 alias gob='go build'
 alias goc='go clean'
@@ -30,3 +31,8 @@ function git_push()
     git push gerrit HEAD:refs/for/v8-baseos -f
     set +x
 }
+
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+

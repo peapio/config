@@ -9,6 +9,7 @@ function install()
     set -x
     cp ${current_path}/vim/vimrc ${HOME}/.vimrc
     cp ${current_path}/tools/tools.sh ${HOME}/.tools.sh
+    cp ${current_path}/tools/Xmodmap ${HOME}/.Xmodmap
     echo "source ${HOME}/.tools.sh" >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
     set +x
